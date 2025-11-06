@@ -8,6 +8,15 @@
     <style>
         :root {
             color-scheme: dark;
+            --text-color: #FAEBD7;
+            --main-color: blue;
+            --bg-color-body: #151d25;
+            --bg-color-header: #323949;
+            --transition-color: color 200ms ease;
+            --transition-background: background 200ms ease;
+            --transition-border: border 200ms ease;
+            --transition-transform: transform 100ms ease;
+            --text-shadow: 0px 2px 4px #000;
         }
 
         * {
@@ -20,35 +29,62 @@
 
         body {
             display: flex;
-            justify-content: start;
+            justify-content: center;
             align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            transition: all 200ms linear;
-        }
-
-        body.light-mode {
-            background-color: white;
-            color: black;
+            transition: var(--transition-background);
+            background: var(--bg-color-body);
         }
 
         header {
-            padding-top: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 80%;
+            height: 10vh;
+            border: 2px var(--text-color) solid;
+            padding: 0 20px;
+            border-radius: 8px;
+            margin-top: 2vh;
+            transition: var(--transition-border);
+            background: var(--bg-color-header);
         }
 
         #toggle-theme {
             background: none;
             font-size: 32px;
             display: inline-block;
-            transition: all 100ms linear;
+            transition: var(--transition-transform);
         }
 
         #toggle-theme:active {
             transform: scale(0.9);
+        }
+
+        #header-nav {
+            width: 60%;
+        }
+
+        #header-ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+        }
+
+        .header-li {
+            padding: 8px;
+        }
+
+        a {
+            color: var(--text-color);
+            transition: var(--transition-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-shadow: var(--text-shadow);
+            transition: var(--transition-color)
         }
     </style>
 </head>
@@ -56,12 +92,22 @@
 <body id="body">
 
     <header id="header">
-        <a href="">Bruh</a>
-        <nav id="nav-header">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+        <a href="" id="header-logo">Logo</a>
+        <nav id="header-nav">
+            <ul id="header-ul">
+
+                <li class="header-li">
+                    <a href="">Bruh</a>
+                </li>
+
+                <li class="header-li">
+                    <a href="">Bruh</a>
+                </li>
+
+                <li class="header-li">
+                    <a href="">Bruh</a>
+                </li>
+
             </ul>
         </nav>
         <button id="toggle-theme">☀️</button>
@@ -71,6 +117,7 @@
     <script>
         const body = document.querySelector("body");
         const toggleThemeBtn = document.getElementById("toggle-theme");
+        const root = document.documentElement;
 
         (function checkStatus() {
             const localTheme = JSON.parse(localStorage.getItem("light-theme"));
@@ -79,11 +126,19 @@
 
         function applyTheme(lightTheme) {
             if (lightTheme) {
-                toggleThemeBtn.textContent = "🌙";
+                toggleThemeBtn.textContent = "☀️";
+                root.style.setProperty("--bg-color-body", "#151d25")
+                root.style.setProperty("--bg-color-header", "#323949")
+                root.style.setProperty("--text-color", "#FAEBD7")
+                root.style.setProperty("--text-shadow", "0px 2px 4px #000")
                 body.classList.add("light-mode");
                 localStorage.setItem("light-theme", "true");
             } else {
-                toggleThemeBtn.textContent = "☀️";
+                toggleThemeBtn.textContent = "🌙";
+                root.style.setProperty("--bg-color-body", "#FFFAED")
+                root.style.setProperty("--bg-color-header", "#FAEBD7")
+                root.style.setProperty("--text-color", "#000")
+                root.style.setProperty("--text-shadow", "0px 1px 2px rgba(0,0,0,0.3)")
                 body.classList.remove("light-mode");
                 localStorage.setItem("light-theme", "false");
             }
