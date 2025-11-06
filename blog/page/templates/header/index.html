@@ -4,19 +4,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"
+        type="text/css" />
     <title>Practice</title>
     <style>
         :root {
+            /* dark {defualt} theme variables set */
+
+            /* variables of color */
             color-scheme: dark;
             --text-color: #FAEBD7;
-            --main-color: blue;
             --bg-color-body: #151d25;
             --bg-color-header: #323949;
-            --transition-color: color 200ms ease;
-            --transition-background: background 200ms ease;
-            --transition-border: border 200ms ease;
-            --transition-transform: transform 100ms ease;
+
+            /* variables of transition */
+            --transition-color: color 400ms ease;
+            --transition-background: background 400ms ease;
+            --transition-border: border 400ms ease;
+            --transition-transform: transform 200ms ease;
             --text-shadow: 0px 2px 4px #000;
+        }
+
+        :root[theme="light"] {
+            /* light theme variables set */
+
+            /* variables of color */
+            color-scheme: light;
+            --text-color: #000;
+            --bg-color-body: #FFFAED;
+            --bg-color-header: #FAEBD7;
+            --text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -33,6 +50,9 @@
             align-items: center;
             transition: var(--transition-background);
             background: var(--bg-color-body);
+            font-family: Vazirmatn;
+            box-sizing: border-box;
+
         }
 
         header {
@@ -54,10 +74,11 @@
             font-size: 32px;
             display: inline-block;
             transition: var(--transition-transform);
+            text-shadow: var(--text-shadow);
         }
 
         #toggle-theme:active {
-            transform: scale(0.9);
+            transform: scale(0.8);
         }
 
         #header-nav {
@@ -115,41 +136,43 @@
     </header>
 
     <script>
-        const body = document.querySelector("body");
-        const toggleThemeBtn = document.getElementById("toggle-theme");
-        const root = document.documentElement;
 
-        (function checkStatus() {
-            const localTheme = JSON.parse(localStorage.getItem("light-theme"));
-            applyTheme(localTheme);
-        })();
+        (function () {
+            const body = document.querySelector("body");
+            const themeBtn = document.getElementById("toggle-theme");
+            const root = document.documentElement;
+            const THEME_KEY = "theme";
 
-        function applyTheme(lightTheme) {
-            if (lightTheme) {
-                toggleThemeBtn.textContent = "☀️";
-                root.style.setProperty("--bg-color-body", "#151d25")
-                root.style.setProperty("--bg-color-header", "#323949")
-                root.style.setProperty("--text-color", "#FAEBD7")
-                root.style.setProperty("--text-shadow", "0px 2px 4px #000")
-                body.classList.add("light-mode");
-                localStorage.setItem("light-theme", "true");
-            } else {
-                toggleThemeBtn.textContent = "🌙";
-                root.style.setProperty("--bg-color-body", "#FFFAED")
-                root.style.setProperty("--bg-color-header", "#FAEBD7")
-                root.style.setProperty("--text-color", "#000")
-                root.style.setProperty("--text-shadow", "0px 1px 2px rgba(0,0,0,0.3)")
-                body.classList.remove("light-mode");
-                localStorage.setItem("light-theme", "false");
+            (function checkStatus() {
+                const saved = localStorage.getItem(THEME_KEY);
+                if (saved === "light" || saved === "dark") {
+                    applyTheme(saved);
+                } else {
+                    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+                    applyTheme(prefersLight ? "light" : "dark");
+                }
+            })();
+
+            function applyTheme(theme) {
+                if (theme === "light") {
+                    localStorage.setItem(THEME_KEY, "light");
+                    if (themeBtn) themeBtn.textContent = "🌙";
+                    root.setAttribute(THEME_KEY, "light")
+                } else {
+                    localStorage.setItem(THEME_KEY, "dark");
+                    if (themeBtn) themeBtn.textContent = "☀️";
+                    root.removeAttribute(THEME_KEY);
+                }
             }
-        }
 
-        const toggleTheme = () => {
-            const lightTheme = body.classList.contains("light-mode");
-            applyTheme(!lightTheme);
-        };
+            const toggleTheme = () => {
+                const current = root.getAttribute(THEME_KEY);
+                const next = current === "light" ? "dark" : "light";
+                applyTheme(next);
+            };
 
-        toggleThemeBtn.addEventListener("click", toggleTheme);
+            if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+        })();
 
     </script>
 
