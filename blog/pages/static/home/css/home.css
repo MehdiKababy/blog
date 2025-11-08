@@ -1,8 +1,12 @@
 body {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    transition: all 200ms linear;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  transition: all 200ms linear;
+  width: 100%;
+}
+
+main {
+  width: 80%;
 }

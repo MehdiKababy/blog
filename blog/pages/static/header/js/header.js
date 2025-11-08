@@ -3,6 +3,8 @@
     const themeBtn = document.getElementById("toggle-theme");
     const root = document.documentElement;
     const THEME_KEY = "theme";
+    const headerUl = document.getElementById("header-ul");
+    const headerLogo = document.getElementById("header-logo");
 
     (function checkStatus() {
         const saved = localStorage.getItem(THEME_KEY);
@@ -33,4 +35,6 @@
     };
 
     if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+    headerUl.addEventListener("click",(e)=>{e.preventDefault()})
+    headerLogo.addEventListener("click",(e)=>{e.preventDefault()})
 })();

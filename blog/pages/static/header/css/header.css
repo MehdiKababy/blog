@@ -1,94 +1,95 @@
 :root {
-    /* dark {defualt} theme variables set */
+  /* dark {defualt} theme variables set */
 
-    /* variables of color */
-    color-scheme: dark;
-    --text-color: #FAEBD7;
-    --bg-color-body: #151d25;
-    --bg-color-header: rgba(50, 57, 73, 0.5);
-    --text-shadow: 0px 1px 2px rgba(250, 235, 215, 0.4);
-    --border-header: 2px solid rgba(250, 235, 215, 0.4);
+  /* variables of color */
+  color-scheme: dark;
+  --text-color: #faebd7;
+  --bg-color-body: #151d25;
+  --bg-color-header: rgba(50, 57, 73, 0.5);
+  --text-shadow: 0px 1px 2px rgba(250, 235, 215, 0.4);
+  --border-header: 2px solid rgba(250, 235, 215, 0.4);
 
-    /* variables of transition */
-    --transition-color: color 400ms ease;
-    --transition-background: background-color 400ms ease;
-    --transition-border: border 400ms ease;
-    --transition-text-shadow: text-shadow 200ms ease;
-    --transition-transform: transform 200ms ease;
+  /* variables of transition */
+  --transition-color: color 400ms ease;
+  --transition-background: background-color 400ms ease;
+  --transition-border: border 400ms ease;
+  --transition-text-shadow: text-shadow 200ms ease;
+  --transition-transform: transform 200ms ease;
 }
 
 :root[theme="light"] {
-    /* light theme variables set */
+  /* light theme variables set */
 
-    /* variables of color */
-    color-scheme: light;
-    --text-color: #000;
-    --bg-color-body: #FFFAED;
-    --bg-color-header: rgba(250, 235, 215, 0.5);
-    --text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-    --border-header: 2px rgba(0, 0, 0, 0.4) solid;
+  /* variables of color */
+  color-scheme: light;
+  --text-color: #000;
+  --bg-color-body: #fffaed;
+  --bg-color-header: rgba(250, 235, 215, 0.5);
+  --text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --border-header: 2px rgba(0, 0, 0, 0.4) solid;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: max(40%, 300px);
-    height: 10vh;
-    border: var(--border-header);
-    padding: 0 20px;
-    border-radius: 8px;
-    margin-top: 2vh;
-    transition: var(--transition-border);
-    background: var(--bg-color-header);
-    backdrop-filter: blur(8px);
-    position: fixed;
-    z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: max(40%, 300px);
+  height: 10vh;
+  border: var(--border-header);
+  padding: 0 20px;
+  border-radius: 8px;
+  margin: 2vh 0 4vh;
+  transition: var(--transition-border);
+  background: var(--bg-color-header);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 2vh;
+  z-index: 10;
 }
 
 #toggle-theme {
-    background: none;
-    font-size: 32px;
-    display: inline-block;
-    transition: var(--transition-transform);
-    text-shadow: var(--text-shadow);
+  background: none;
+  font-size: 32px;
+  display: inline-block;
+  transition: var(--transition-transform);
+  text-shadow: var(--text-shadow);
 }
 
 #toggle-theme:active {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 
 #header-nav {
-    width: 60%;
+  width: 60%;
 }
 
 #header-ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
 }
 
 .header-li {
-    padding: 8px;
+  padding: 8px;
 }
 
 a {
-    text-decoration: none;
-    color: var(--text-color);
-    transition: var(--transition-color), var(--transition-text-shadow);
+  text-decoration: none;
+  color: var(--text-color);
+  transition: var(--transition-color), var(--transition-text-shadow);
 }
 
 a:hover {
-    text-shadow: var(--text-shadow);
-    transition: var(--transition-color), var(--transition-text-shadow);
+  text-shadow: var(--text-shadow);
+  transition: var(--transition-color), var(--transition-text-shadow);
 }
