@@ -1,0 +1,88 @@
+body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #f4f7f6;
+    margin: 20px;
+    padding: 0;
+    direction: rtl;
+    text-align: right;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-display {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.post-display h1 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.post-display h2,
+.post-display h3 {
+    color: #555;
+    margin: 10px 0;
+    font-weight: normal;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.edit-button {
+    background-color: #28a745;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
+
+.edit-form-section {
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+}
+
+#edit-form-wrapper {
+    display: none;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: white;
+    margin-top: 10px;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+}
