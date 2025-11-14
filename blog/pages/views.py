@@ -12,15 +12,29 @@ def all_posts(request):
     return render(request, "./all_posts/all_posts.html", {"posts": posts})
 
 
-def select_post(request, pk):
+# def select_post(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     edit_post = PostForm(instance=post)
+#     if request.method == "POST":
+#         edit_post = PostForm(request.POST, instance=post)
+#         if edit_post.is_valid():
+#             edit_post.save()
+#             return redirect("select post", pk=pk)
+#     else:
+#         return render(request, "./select_post/select_post.html", {"post": post, 'form': edit_post})
+def select_post(request, pk, kk=None):
     post = get_object_or_404(Post, pk=pk)
+    kk = post.title
     edit_post = PostForm(instance=post)
+    # print(redirect("select post", pk=pk, kk=kk))
+    test = redirect("select post", pk=pk, kk=kk)
     if request.method == "POST":
         edit_post = PostForm(request.POST, instance=post)
         if edit_post.is_valid():
             edit_post.save()
-            return redirect("select post", pk=pk)
+            return redirect("select post", pk=pk, kk=kk)
     else:
+        # return render(request, "./select_post/select_post.html", {"post": post, 'form': edit_post, 'test': test.url})
         return render(request, "./select_post/select_post.html", {"post": post, 'form': edit_post})
 def create_post(request):
     new_post = PostForm()
